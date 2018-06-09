@@ -1,0 +1,18 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: "russmck"
+  description: "Role to install the Docker CE Edge release on either an Enterprise Linux or Ubuntu host"
+  license: "license (BSD)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+      - 6
+      - 7
+    - name: Ubuntu
+      versions:
+      - all
+  galaxy_tags:
+    - docker

@@ -1,0 +1,38 @@
+---
+# tasks file for ansible-role-docker
+
+- name: install the system packages
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: "yes"
+  with_items: "{{ docker.system_packages }}"
+
+- name: add the apt keys from a key server
+  apt_key:
+    url: "{{ docker.gpg_key }}"
+    state: present
+
+- name: add the apt repo
+  apt_repository:
+    repo: "{{ docker.repo }}"
+    state: present
+
+- name: install the docker package
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: "yes"
+    force: "yes"
+  with_items: "{{ docker.packages }}"
+
+- name: install the python packages
+  pip:
+    name: "{{ item }}"
+  with_items: "{{ docker.pip }}"
+
+- name: start docker and configure to start on boot
+  service:
+    name: "docker"
+    state: "started"
+    enabled: "yes"

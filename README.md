@@ -26,7 +26,7 @@ An example playbook can be found below;
   become_method: sudo
 
   roles:
-    - russmck.ansible-role-docker
+    - russmck.docker
 ```
 
 License
